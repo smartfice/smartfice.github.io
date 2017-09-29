@@ -69,16 +69,26 @@
     <article id="post-middleware1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/29/middleware1/" class="article-date">
-  <time datetime="2017-09-29T08:43:55.381Z" itemprop="datePublished">2017-09-29</time>
+  <time datetime="2017-09-29T08:49:02.502Z" itemprop="datePublished">2017-09-29</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/29/middleware1/">Django middleware</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Django基本中间件"><a href="#Django基本中间件" class="headerlink" title="Django基本中间件"></a>Django基本中间件</h1><h2 id="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。"><a href="#Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。" class="headerlink" title="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。"></a>Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。</h2><h3 id="在middleware-py文件中定义中间件类："><a href="#在middleware-py文件中定义中间件类：" class="headerlink" title="在middleware.py文件中定义中间件类："></a>在middleware.py文件中定义中间件类：</h3><ul>
+        <h2 id="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。"><a href="#Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。" class="headerlink" title="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。"></a>Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。</h2><h3 id="在middleware-py文件中定义中间件类："><a href="#在middleware-py文件中定义中间件类：" class="headerlink" title="在middleware.py文件中定义中间件类："></a>在middleware.py文件中定义中间件类：</h3><ul>
 <li><strong>init</strong>(self) :服务器响应第一个请求的时候调用。</li>
 <li>process_request(self, request)(每个请求上调用,返回None或者HttpResponse对象)：是产生request对象,进行url匹配之前调用</li>
 <li>process_view(self, request, view_func, <em>view_args, *</em>view_kwargs)（每个请求上调用,返回None或者HttpResponse对象 ）:是url匹配之后,调用视图函数之前.</li>
@@ -107,7 +117,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://smartfice.com/2017/09/29/middleware1/" data-id="cj85n6pbw0000t6jxpx49hnxb" class="article-share-link">Share</a>
+      <a data-url="http://smartfice.com/2017/09/29/middleware1/" data-id="cj85nd7nm00000wjxdmnc9bb4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -144,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://smartfice.com/2017/09/28/python/" data-id="cj85n6pc30001t6jxdqzg0orm" class="article-share-link">Share</a>
+      <a data-url="http://smartfice.com/2017/09/28/python/" data-id="cj85nd7nt00010wjx6tyvlayh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -184,7 +194,7 @@
       <ul>
         
           <li>
-            <a href="/2017/09/29/middleware1/">(no title)</a>
+            <a href="/2017/09/29/middleware1/">Django middleware</a>
           </li>
         
           <li>

@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Monkey</title>
+  <title>Django middleware | Monkey</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Django基本中间件Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。在middleware.py文件中定义中间件类： init(self) :服务器响应第一个请求的时候调用。 process_request(self, request)(每个请求上调用,返回None或者Http">
+  <meta name="description" content="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。在middleware.py文件中定义中间件类： init(self) :服务器响应第一个请求的时候调用。 process_request(self, request)(每个请求上调用,返回None或者HttpResponse对象)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Monkey">
+<meta property="og:title" content="Django middleware">
 <meta property="og:url" content="http://smartfice.com/2017/09/29/middleware1/index.html">
 <meta property="og:site_name" content="Monkey">
-<meta property="og:description" content="Django基本中间件Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。在middleware.py文件中定义中间件类： init(self) :服务器响应第一个请求的时候调用。 process_request(self, request)(每个请求上调用,返回None或者Http">
+<meta property="og:description" content="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。在middleware.py文件中定义中间件类： init(self) :服务器响应第一个请求的时候调用。 process_request(self, request)(每个请求上调用,返回None或者HttpResponse对象)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-29T08:41:26.217Z">
+<meta property="og:updated_time" content="2017-09-29T08:49:02.502Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Monkey">
-<meta name="twitter:description" content="Django基本中间件Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。在middleware.py文件中定义中间件类： init(self) :服务器响应第一个请求的时候调用。 process_request(self, request)(每个请求上调用,返回None或者Http">
+<meta name="twitter:title" content="Django middleware">
+<meta name="twitter:description" content="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。在middleware.py文件中定义中间件类： init(self) :服务器响应第一个请求的时候调用。 process_request(self, request)(每个请求上调用,返回None或者HttpResponse对象)">
   
     <link rel="alternate" href="/atom.xml" title="Monkey" type="application/atom+xml">
   
@@ -71,16 +71,26 @@
         <section id="main"><article id="post-middleware1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/29/middleware1/" class="article-date">
-  <time datetime="2017-09-29T08:43:55.381Z" itemprop="datePublished">2017-09-29</time>
+  <time datetime="2017-09-29T08:49:02.502Z" itemprop="datePublished">2017-09-29</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Django middleware
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Django基本中间件"><a href="#Django基本中间件" class="headerlink" title="Django基本中间件"></a>Django基本中间件</h1><h2 id="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。"><a href="#Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。" class="headerlink" title="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。"></a>Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。</h2><h3 id="在middleware-py文件中定义中间件类："><a href="#在middleware-py文件中定义中间件类：" class="headerlink" title="在middleware.py文件中定义中间件类："></a>在middleware.py文件中定义中间件类：</h3><ul>
+        <h2 id="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。"><a href="#Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。" class="headerlink" title="Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。"></a>Django中间件是一个轻量级、底层的插件系统，可以介入Django的请求和响应处理过程，修改Django的输入或输出。中间件为设计开发者提供了一种无侵入式的开发方式。</h2><h3 id="在middleware-py文件中定义中间件类："><a href="#在middleware-py文件中定义中间件类：" class="headerlink" title="在middleware.py文件中定义中间件类："></a>在middleware.py文件中定义中间件类：</h3><ul>
 <li><strong>init</strong>(self) :服务器响应第一个请求的时候调用。</li>
 <li>process_request(self, request)(每个请求上调用,返回None或者HttpResponse对象)：是产生request对象,进行url匹配之前调用</li>
 <li>process_view(self, request, view_func, <em>view_args, *</em>view_kwargs)（每个请求上调用,返回None或者HttpResponse对象 ）:是url匹配之后,调用视图函数之前.</li>
@@ -109,7 +119,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://smartfice.com/2017/09/29/middleware1/" data-id="cj85n6pbw0000t6jxpx49hnxb" class="article-share-link">Share</a>
+      <a data-url="http://smartfice.com/2017/09/29/middleware1/" data-id="cj85nd7nm00000wjxdmnc9bb4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -158,7 +168,7 @@
       <ul>
         
           <li>
-            <a href="/2017/09/29/middleware1/">(no title)</a>
+            <a href="/2017/09/29/middleware1/">Django middleware</a>
           </li>
         
           <li>
