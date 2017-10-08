@@ -326,7 +326,7 @@
       
 
       
-        <p><img src="imsges/banner.jpg" alt=""></p>
+        <p><img src="/mysql/imsges/banner.jpg" alt=""></p>
 <h2 id="1、当我把-DEBUG-True设为False的时候运行-Python-manage-py-runserver-的时候"><a href="#1、当我把-DEBUG-True设为False的时候运行-Python-manage-py-runserver-的时候" class="headerlink" title="1、当我把 DEBUG = True设为False的时候运行 Python manage.py runserver 的时候"></a>1、当我把 DEBUG = True设为False的时候运行 Python manage.py runserver 的时候</h2><p>报错 ： CommandError: You must set settings.ALLOWED_HOSTS if DEBUG is False.<br>解决方案：<br>ALLOWED_HOSTS = [‘127.0.0.1’, ‘localhost’]</p>
 <h2 id="2、报错信息："><a href="#2、报错信息：" class="headerlink" title="2、报错信息："></a>2、报错信息：</h2><p> ModelForm Creating a ModelForm without either the ‘fields’ attribute or the ‘exclude’ attribute<br>is prohibited; form AuthorForm needs updating. </p>
 <h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><p>class AuthorForm(ModelForm):<br>class Meta:<br>model = Author<br>fields = “all” </p>
