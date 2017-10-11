@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Monkey'blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=" />
+
+
+
+
+
+
+<meta name="description" content="为了确保类是新型类，应该把 metaclass=type 入到你的模块的最开始。1234class NewType(Object):　　mor_code_hereclass OldType:　　mor_code_here 在这个两个类中NewType是新类，OldType是属于旧类，如果前面加上 metaclass=type ，那么两个类都属于新类。构造方法构造方法与其的方法不一样，当一个对象被创">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python类的魔法方法、属性！！！">
+<meta property="og:url" content="http://smartfice.com/pythonmagic/index.html">
+<meta property="og:site_name" content="Monkey&#39;blog">
+<meta property="og:description" content="为了确保类是新型类，应该把 metaclass=type 入到你的模块的最开始。1234class NewType(Object):　　mor_code_hereclass OldType:　　mor_code_here 在这个两个类中NewType是新类，OldType是属于旧类，如果前面加上 metaclass=type ，那么两个类都属于新类。构造方法构造方法与其的方法不一样，当一个对象被创">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-11T07:21:21.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python类的魔法方法、属性！！！">
+<meta name="twitter:description" content="为了确保类是新型类，应该把 metaclass=type 入到你的模块的最开始。1234class NewType(Object):　　mor_code_hereclass OldType:　　mor_code_here 在这个两个类中NewType是新类，OldType是属于旧类，如果前面加上 metaclass=type ，那么两个类都属于新类。构造方法构造方法与其的方法不一样，当一个对象被创">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://smartfice.com/pythonmagic/"/>
+
+
+
+
+
+  <title>python类的魔法方法、属性！！！ | Monkey'blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Monkey'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">welcome to monkey</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://smartfice.com/pythonmagic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="smartfice">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/31237700?v=4&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Monkey'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python类的魔法方法、属性！！！</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T21:53:36+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="为了确保类是新型类，应该把-metaclass-type-入到你的模块的最开始。"><a href="#为了确保类是新型类，应该把-metaclass-type-入到你的模块的最开始。" class="headerlink" title="为了确保类是新型类，应该把 metaclass=type 入到你的模块的最开始。"></a>为了确保类是新型类，应该把 <em>metaclass</em>=type 入到你的模块的最开始。</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewType</span><span class="params">(Object)</span>:</span></div><div class="line">　　mor_code_here</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OldType</span>:</span></div><div class="line">　　mor_code_here</div></pre></td></tr></table></figure>
+<h3 id="在这个两个类中NewType是新类，OldType是属于旧类，如果前面加上-metaclass-type-，那么两个类都属于新类。"><a href="#在这个两个类中NewType是新类，OldType是属于旧类，如果前面加上-metaclass-type-，那么两个类都属于新类。" class="headerlink" title="在这个两个类中NewType是新类，OldType是属于旧类，如果前面加上 metaclass=type ，那么两个类都属于新类。"></a>在这个两个类中NewType是新类，OldType是属于旧类，如果前面加上 <em>metaclass</em>=type ，那么两个类都属于新类。</h3><h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><h3 id="构造方法与其的方法不一样，当一个对象被创建会立即调用构造方法。创建一个python的构造方法很简答，只要把init方法，从简单的init方法，转换成魔法版本的init方法就可以了。"><a href="#构造方法与其的方法不一样，当一个对象被创建会立即调用构造方法。创建一个python的构造方法很简答，只要把init方法，从简单的init方法，转换成魔法版本的init方法就可以了。" class="headerlink" title="构造方法与其的方法不一样，当一个对象被创建会立即调用构造方法。创建一个python的构造方法很简答，只要把init方法，从简单的init方法，转换成魔法版本的init方法就可以了。"></a>构造方法与其的方法不一样，当一个对象被创建会立即调用构造方法。创建一个python的构造方法很简答，只要把init方法，从简单的init方法，转换成魔法版本的<em>init</em>方法就可以了。</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooBar</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.somevar = <span class="number">42</span></div><div class="line">        </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f =FooBar()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>f.somevar</div><div class="line"><span class="number">42</span></div></pre></td></tr></table></figure>
+<h3 id="重写一个一般方法"><a href="#重写一个一般方法" class="headerlink" title="重写一个一般方法"></a>重写一个一般方法</h3><ul>
+<li><p>每一个类都可能拥有一个或多个超类（父类），它们从超类那里继承行为方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'hello . I am A.'</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></div><div class="line">　　<span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = A()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = B()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a.hello()</div><div class="line">hello . I am A.</div></pre></td></tr></table></figure>
+</li>
+<li><p>因为B类没有hello方法，B类继承了A类，所以会调用A 类的hello方法。</p>
+</li>
+</ul>
+<h3 id="在子类中增加功能功能的最基本的方式就是增加方法。但是也可以重写一些超类的方法来自定义继承的行为。如下："><a href="#在子类中增加功能功能的最基本的方式就是增加方法。但是也可以重写一些超类的方法来自定义继承的行为。如下：" class="headerlink" title="在子类中增加功能功能的最基本的方式就是增加方法。但是也可以重写一些超类的方法来自定义继承的行为。如下："></a>在子类中增加功能功能的最基本的方式就是增加方法。但是也可以重写一些超类的方法来自定义继承的行为。如下：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'hello . I am A.'</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'hello . I am  B'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = B()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b.hello()</div><div class="line">hello . I am  B</div></pre></td></tr></table></figure>
+<h3 id="特殊的和构造方法"><a href="#特殊的和构造方法" class="headerlink" title="特殊的和构造方法"></a>特殊的和构造方法</h3><ul>
+<li><p>重写是继承机制中的一个重要内容，对一于构造方法尤其重要。看下面的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.hungry = <span class="keyword">True</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">eat</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.hungry:</div><div class="line">            <span class="keyword">print</span> <span class="string">'Aaaah...'</span></div><div class="line">            self.hungry = <span class="keyword">False</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">'No, thanks!'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b = Bird()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b.eat()</div><div class="line">Aaaah...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>b.eat()</div><div class="line">No, thanks!</div></pre></td></tr></table></figure>
+</li>
+<li><p>这个类中定义了鸟有吃的能力， 当它吃过一次后再次就会不饿了，通过上面的执行结果可以清晰的看到。</p>
+</li>
+<li><p>那么用SongBird类来继承Bird 类，并且给它添加歌唱的方法：</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.hungry = <span class="keyword">True</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">eat</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.hungry:</div><div class="line">            <span class="keyword">print</span> <span class="string">'Aaaah...'</span></div><div class="line">            self.hungry = <span class="keyword">False</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">'No, thanks!'</span></div><div class="line">            </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SongBird</span><span class="params">(Bird)</span>:</span></div><div class="line">         <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">                 self.sound = <span class="string">'Squawk!'</span></div><div class="line">         <span class="function"><span class="keyword">def</span> <span class="title">sing</span><span class="params">(self)</span>:</span></div><div class="line">                 <span class="keyword">print</span> self.sound</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = SongBird()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.sing()</div><div class="line">Squawk!</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.eat()</div><div class="line"></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;pyshell#26&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    s.eat()</div><div class="line">  File <span class="string">"C:/Python27/bird"</span>, line <span class="number">6</span>, <span class="keyword">in</span> eat</div><div class="line">    <span class="keyword">if</span> self.hungry:</div><div class="line">AttributeError: <span class="string">'SongBird'</span> object has no attribute <span class="string">'hungry'</span></div></pre></td></tr></table></figure>
+<ul>
+<li>异常很清楚地说明了错误：SongBird没有hungry特性。原因是这样的：在SongBird中，构造方法被重写，但新的构造方法没有任何关于初始化hungry特性的代码。为了达到预期的效果，SongBird的构造方法必须调用其超类Bird的构造方法来确保进行基本的初始化。</li>
+</ul>
+<h2 id="两种方法实现："><a href="#两种方法实现：" class="headerlink" title="两种方法实现："></a>两种方法实现：</h2><h3 id="一-、调用未绑定的超类构造方法"><a href="#一-、调用未绑定的超类构造方法" class="headerlink" title="一 、调用未绑定的超类构造方法"></a>一 、调用未绑定的超类构造方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.hungry = <span class="keyword">True</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">eat</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.hungry:</div><div class="line">            <span class="keyword">print</span> <span class="string">'Aaaah...'</span></div><div class="line">            self.hungry = <span class="keyword">False</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">'No, thanks!'</span></div><div class="line">            </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SongBird</span><span class="params">(Bird)</span>:</span></div><div class="line">         <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">                 Bird.__init__(self)</div><div class="line">                 self.sound = <span class="string">'Squawk!'</span></div><div class="line">         <span class="function"><span class="keyword">def</span> <span class="title">sing</span><span class="params">(self)</span>:</span></div><div class="line">                 <span class="keyword">print</span> self.sound</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = SongBird()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.sing()</div><div class="line">Squawk!</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.eat()</div><div class="line">Aaaah...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.eat()</div><div class="line">No, thanks!</div></pre></td></tr></table></figure>
+<ul>
+<li><p>在SongBird类中添加了一行代码Bird.<strong>init</strong>(self) 。 在调用一个实例的方法时，该方法的self参数会被自动绑定到实例上（这称为绑定方法）。但如果直接调用类的方法，那么就没有实例会被绑定。这样就可以自由地提供需要的self参数（这样的方法称为未绑定方法）。</p>
+</li>
+<li><p>通过将当前的实例作为self参数提供给未绑定方法，SongBird就能够使用其超类构造方法的所有实现，也就是说属性hungry能被设置。</p>
+</li>
+</ul>
+<h3 id="二、使用super函数"><a href="#二、使用super函数" class="headerlink" title="二、使用super函数"></a>二、使用super函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">__metaclass__ = type  <span class="comment">#表明为新式类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.hungry = <span class="keyword">True</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">eat</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.hungry:</div><div class="line">            <span class="keyword">print</span> <span class="string">'Aaaah...'</span></div><div class="line">            self.hungry = <span class="keyword">False</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">'No, thanks!'</span></div><div class="line">            </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SongBird</span><span class="params">(Bird)</span>:</span></div><div class="line">         <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">                 super(SongBird,self).__init__()</div><div class="line">                 self.sound = <span class="string">'Squawk!'</span></div><div class="line">         <span class="function"><span class="keyword">def</span> <span class="title">sing</span><span class="params">(self)</span>:</span></div><div class="line">                 <span class="keyword">print</span> self.sound</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.sing()</div><div class="line">Squawk!</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.eat()</div><div class="line">Aaaah...</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s.eat()</div><div class="line">No, thanks!</div></pre></td></tr></table></figure>
+<ul>
+<li>super函数只能在新式类中使用。当前类和对象可以作为super函数的参数使用，调用函数返回的对象的任何方法都是调用超类的方法，而不是当前类的方法。那就可以不同在SongBird的构造方法中使用Bird,而直接使用super(SongBird,self)。</li>
+</ul>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><ul>
+<li><p>访问器是一个简单的方法，它能够使用getHeight 、setHeight 之样的名字来得到或者重绑定一些特性。如果在访问给定的特性时必须要采取一些行动，那么像这样的封装状态变量就很重要。如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.width = <span class="number">0</span></div><div class="line">        self.height = <span class="number">0</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setSize</span><span class="params">(self,size)</span>:</span></div><div class="line">        self.width , self.height = size</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getSize</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.width , self.height</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r = Rectangle()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r.width = <span class="number">10</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r.height = <span class="number">5</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r.getSize()</div><div class="line">(<span class="number">10</span>, <span class="number">5</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r.setSize((<span class="number">150</span>,<span class="number">100</span>))</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r.width</div><div class="line"><span class="number">150</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在上面的例子中，getSize和setSize方法一个名为size的假想特性的访问器方法，size是由width 和height构成的元组。</p>
+</li>
+</ul>
+<h2 id="property-函数"><a href="#property-函数" class="headerlink" title="property 函数"></a>property 函数</h2><ul>
+<li><p>property函数的使用很简单，如果已经编写了一个像上节的Rectangle 那样的类，那么只要增加一行代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">__metaclass__ = type</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__int__</span><span class="params">(self)</span>:</span></div><div class="line">        self.width = <span class="number">0</span></div><div class="line">        self.height = <span class="number">0</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setSize</span><span class="params">(self,size)</span>:</span></div><div class="line">        self.width, self.height = size</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getSize</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.width ,self.height</div><div class="line">    size = property(getSize ,setSize)</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r = Rectangle()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r.width = <span class="number">10</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r.height = <span class="number">5</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r.size</div><div class="line">(<span class="number">10</span>, <span class="number">5</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r.size = <span class="number">150</span>,<span class="number">100</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>r.width</div><div class="line"><span class="number">150</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在这个新版的Retangle 中，property 函数创建了一个属性，其中访问器函数被用作参数（先取值，然后是赋值），这个属性命为size 。这样一来就不再需要担心是怎么实现的了，可以用同样的方式处理width、height 和size。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/pythongc/" rel="next" title="Python是如何进行内存管理的？">
+                <i class="fa fa-chevron-left"></i> Python是如何进行内存管理的？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/images/index/" rel="prev" title="images">
+                images <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="https://avatars3.githubusercontent.com/u/31237700?v=4&s=460"
+              alt="smartfice" />
+          
+            <p class="site-author-name" itemprop="name">smartfice</p>
+            <p class="site-description motion-element" itemprop="description">Python Django Scrapy jQuery</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为了确保类是新型类，应该把-metaclass-type-入到你的模块的最开始。"><span class="nav-number">1.</span> <span class="nav-text">为了确保类是新型类，应该把 metaclass=type 入到你的模块的最开始。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在这个两个类中NewType是新类，OldType是属于旧类，如果前面加上-metaclass-type-，那么两个类都属于新类。"><span class="nav-number">1.1.</span> <span class="nav-text">在这个两个类中NewType是新类，OldType是属于旧类，如果前面加上 metaclass=type ，那么两个类都属于新类。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造方法"><span class="nav-number">2.</span> <span class="nav-text">构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法与其的方法不一样，当一个对象被创建会立即调用构造方法。创建一个python的构造方法很简答，只要把init方法，从简单的init方法，转换成魔法版本的init方法就可以了。"><span class="nav-number">2.1.</span> <span class="nav-text">构造方法与其的方法不一样，当一个对象被创建会立即调用构造方法。创建一个python的构造方法很简答，只要把init方法，从简单的init方法，转换成魔法版本的init方法就可以了。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重写一个一般方法"><span class="nav-number">2.2.</span> <span class="nav-text">重写一个一般方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在子类中增加功能功能的最基本的方式就是增加方法。但是也可以重写一些超类的方法来自定义继承的行为。如下："><span class="nav-number">2.3.</span> <span class="nav-text">在子类中增加功能功能的最基本的方式就是增加方法。但是也可以重写一些超类的方法来自定义继承的行为。如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊的和构造方法"><span class="nav-number">2.4.</span> <span class="nav-text">特殊的和构造方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种方法实现："><span class="nav-number">3.</span> <span class="nav-text">两种方法实现：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-、调用未绑定的超类构造方法"><span class="nav-number">3.1.</span> <span class="nav-text">一 、调用未绑定的超类构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、使用super函数"><span class="nav-number">3.2.</span> <span class="nav-text">二、使用super函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">4.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#property-函数"><span class="nav-number">5.</span> <span class="nav-text">property 函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">smartfice</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v="></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
